@@ -14,23 +14,22 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     private final View.OnClickListener onClickListener;
-    private final List<Boolean> exploded;
-
-    int[] images = {R.drawable.kitten1, R.drawable.kitten2, R.drawable.kitten3, R.drawable.kitten4};
+    private List<KittenModel> kittens;
 
     CatAdapter(@NonNull View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
-        this.exploded = new LinkedList<>();
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
+        this.kittens = new ArrayList<>();
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
     }
 
     @Override
@@ -41,15 +40,16 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     @Override
     public void onBindViewHolder(CatViewHolder holder, int position) {
-
-        int imagePosition = position % images.length;
+        KittenModel kitten = this.kittens.get(position);
 
         Picasso.with(holder.itemView.getContext())
-                .load(images[imagePosition])
+                .load(kitten.getImageResource())
                 .into(holder.target);
         holder.imageView.setOnClickListener(this.onClickListener);
 
-        if (!exploded.get(position)) {
+        if (kitten.isExploded()) {
+            //TODO set the views animation state to exploded, otherwise rebound view holders might not appear exploded
+        } else {
             this.reset(holder.itemView);
         }
     }
@@ -69,24 +69,22 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     @Override
     public int getItemCount() {
-        return exploded.size();
+        return kittens.size();
     }
 
-    void addMoreImages() {
-        int startingSize = exploded.size();
+    void addMoreKittens(@NonNull Collection<KittenModel> moreKittens) {
+        int startingSize = kittens.size();
+        kittens.addAll(moreKittens);
 
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
-        exploded.add(Boolean.FALSE);
-
-        this.notifyItemRangeInserted(startingSize, exploded.size() - startingSize);
+        this.notifyItemRangeInserted(startingSize, kittens.size() - startingSize);
     }
 
     void reset() {
-        for (int i = 0; i < exploded.size(); i++) {
-            exploded.set(i, Boolean.FALSE);
-        }
+        kittens.clear();
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
+        kittens.add(new KittenModel());
         this.notifyDataSetChanged();
     }
 
