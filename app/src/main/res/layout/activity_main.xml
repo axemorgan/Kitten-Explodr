@@ -26,9 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:gravity="center_horizontal"
-        android:scrollbars="vertical"
         android:background="@color/layout_background"
+        android:gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
         tools:listitem="@layout/recycler_view_cell_cat" />
 
 </android.support.design.widget.CoordinatorLayout>

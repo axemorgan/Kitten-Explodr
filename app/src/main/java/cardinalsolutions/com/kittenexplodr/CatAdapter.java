@@ -61,9 +61,7 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
             }
         });
 
-        if (kitten.isExploded()) {
-            //TODO set the views animation state to exploded, otherwise rebound view holders might not appear exploded
-        } else {
+        if (!kitten.isExploded()) {
             this.reset(holder.itemView);
         }
     }
