@@ -14,15 +14,23 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.LinkedList;
+import java.util.List;
+
 class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     private final View.OnClickListener onClickListener;
+    private final List<Boolean> exploded;
 
     int[] images = {R.drawable.kitten1, R.drawable.kitten2, R.drawable.kitten3, R.drawable.kitten4};
-    boolean[] exploded = new boolean[images.length]; //Inits to false by default
 
     CatAdapter(@NonNull View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+        this.exploded = new LinkedList<>();
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
     }
 
     @Override
@@ -34,12 +42,14 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
     @Override
     public void onBindViewHolder(CatViewHolder holder, int position) {
 
+        int imagePosition = position % images.length;
+
         Picasso.with(holder.itemView.getContext())
-                .load(images[position])
+                .load(images[imagePosition])
                 .into(holder.target);
         holder.imageView.setOnClickListener(this.onClickListener);
 
-        if (!exploded[position]) {
+        if (!exploded.get(position)) {
             this.reset(holder.itemView);
         }
     }
@@ -59,11 +69,24 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return exploded.size();
+    }
+
+    void addMoreImages() {
+        int startingSize = exploded.size();
+
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
+        exploded.add(Boolean.FALSE);
+
+        this.notifyItemRangeInserted(startingSize, exploded.size() - startingSize);
     }
 
     void reset() {
-        this.exploded = new boolean[images.length];
+        for (int i = 0; i < exploded.size(); i++) {
+            exploded.set(i, Boolean.FALSE);
+        }
         this.notifyDataSetChanged();
     }
 

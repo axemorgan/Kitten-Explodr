@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,20 @@ public class MainActivity extends AppCompatActivity {
         exploder = ExplosionField.attach2Window(this);
 
         RecyclerView recycler = (RecyclerView) this.findViewById(R.id.recycler);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler.addOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) {
+                    int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+
+                    if (lastVisibleItem + 1 >= layoutManager.getChildCount()) {
+                        adapter.addMoreImages();
+                    }
+                }
+            }
+        });
+        recycler.setLayoutManager(layoutManager);
         this.adapter = new CatAdapter(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
