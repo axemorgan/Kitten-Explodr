@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             exploder.clear();
             this.adapter.reset();
             return true;
+        } else if (id == R.id.action_about) {
+            AboutFragment.build().show(this.getSupportFragmentManager(), "About");
         }
 
         return super.onOptionsItemSelected(item);

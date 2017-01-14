@@ -5,5 +5,10 @@
     <item android:id="@+id/action_reset"
           android:title="@string/action_reset"
           android:orderInCategory="1"
-          app:showAsAction="always"/>
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/action_about"
+        android:orderInCategory="50"
+        app:showAsAction="never" />
 </menu>
