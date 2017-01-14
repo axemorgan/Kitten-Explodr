@@ -41,13 +41,25 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CatViewHolder holder, int position) {
-        KittenModel kitten = this.kittens.get(position);
+    public void onBindViewHolder(final CatViewHolder holder, final int position) {
+        final KittenModel kitten = this.kittens.get(position);
 
         Picasso.with(holder.itemView.getContext())
                 .load(kitten.getImageResource())
                 .into(holder.target);
-        holder.imageView.setOnClickListener(this.onClickListener);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        kittens.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                    }
+                }, 0x75);
+                onClickListener.onClick(view);
+            }
+        });
 
         if (kitten.isExploded()) {
             //TODO set the views animation state to exploded, otherwise rebound view holders might not appear exploded
