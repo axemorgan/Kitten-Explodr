@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
         android:gravity="center_horizontal"
+        android:scrollbars="vertical"
         android:background="@color/layout_background"
         tools:listitem="@layout/recycler_view_cell_cat" />
 
