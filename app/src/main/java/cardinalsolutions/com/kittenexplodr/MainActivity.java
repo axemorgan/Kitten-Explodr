@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 if (dy > 0) {
                     int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
 
-                    if (lastVisibleItem + 1 >= layoutManager.getChildCount()) {
+                    int childCount = layoutManager.getItemCount();
+                    if (lastVisibleItem + 1 >= childCount) {
                         ArrayList<KittenModel> moreKittens = new ArrayList<>(4);
                         moreKittens.add(new KittenModel());
                         moreKittens.add(new KittenModel());
