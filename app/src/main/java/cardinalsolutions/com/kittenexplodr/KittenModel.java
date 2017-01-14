@@ -1,20 +1,19 @@
 package cardinalsolutions.com.kittenexplodr;
 
-import android.support.annotation.DrawableRes;
-
+@SuppressWarnings("WeakerAccess")
 public class KittenModel {
 
     private static long ID_COUNTER = 0;
-    private static int[] IMAGES = {R.drawable.kitten1, R.drawable.kitten2, R.drawable.kitten3, R.drawable.kitten4};
+    private static final String IMAGE_BASE_URL = "http://placekitten.com/400/400?image=";
+    private static final int IMAGE_COUNT = 16;
 
     private final long id;
-    @DrawableRes
-    private int imageResource;
+    private final String imageUrl;
     private boolean isExploded;
 
     public KittenModel() {
         this.id = ID_COUNTER++;
-        this.imageResource = IMAGES[(int) (id % IMAGES.length)];
+        this.imageUrl = IMAGE_BASE_URL + id % (IMAGE_COUNT + 1);
         this.isExploded = false;
     }
 
@@ -22,9 +21,8 @@ public class KittenModel {
         return id;
     }
 
-    @DrawableRes
-    public int getImageResource() {
-        return imageResource;
+    public String getIamgeUrl() {
+        return imageUrl;
     }
 
     public boolean isExploded() {

@@ -45,7 +45,7 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
         final KittenModel kitten = this.kittens.get(position);
 
         Picasso.with(holder.itemView.getContext())
-                .load(kitten.getImageResource())
+                .load(kitten.getIamgeUrl())
                 .into(holder.target);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
