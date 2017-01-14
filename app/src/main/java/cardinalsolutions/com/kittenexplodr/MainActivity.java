@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import tyrantgit.explosionfield.ExplosionField;
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recycler = (RecyclerView) this.findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        this.adapter = new CatAdapter(this, new View.OnClickListener() {
+        this.adapter = new CatAdapter(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 exploder.explode(v);

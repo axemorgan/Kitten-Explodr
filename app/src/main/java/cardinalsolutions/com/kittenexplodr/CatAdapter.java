@@ -1,6 +1,7 @@
 package cardinalsolutions.com.kittenexplodr;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,18 +10,14 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by amorgan on 10/8/15.
- */
-public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
+class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
-    Context context;
-    View.OnClickListener onClickListener;
+    private final View.OnClickListener onClickListener;
+
     int[] images = {R.drawable.kitten1, R.drawable.kitten2, R.drawable.kitten3, R.drawable.kitten4};
     boolean[] exploded = new boolean[images.length]; //Inits to false by default
 
-    public CatAdapter(Context context, View.OnClickListener onClickListener) {
-        this.context = context;
+    CatAdapter(@NonNull View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
@@ -32,12 +29,15 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     @Override
     public void onBindViewHolder(CatViewHolder holder, int position) {
-        Picasso.with(context).load(images[position]).fit().centerCrop().into(holder.imageView);
+        Picasso.with(holder.itemView.getContext())
+                .load(images[position])
+                .fit()
+                .centerCrop()
+                .into(holder.imageView);
         holder.imageView.setOnClickListener(this.onClickListener);
 
         if (!exploded[position]) {
-            View root = holder.getView();
-            this.reset(root);
+            this.reset(holder.itemView);
         }
     }
 
@@ -59,24 +59,20 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
         return images.length;
     }
 
-    public class CatViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        View view;
-
-        public CatViewHolder(View itemView) {
-            super(itemView);
-            this.imageView = (ImageView) itemView.findViewById(R.id.catImage);
-            this.view = itemView;
-        }
-
-        public View getView() {
-            return this.view;
-        }
-
-    }
-
-    public void reset() {
+    void reset() {
         this.exploded = new boolean[images.length];
         this.notifyDataSetChanged();
+    }
+
+
+    static class CatViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        CardView cardView;
+
+        CatViewHolder(View itemView) {
+            super(itemView);
+            this.imageView = (ImageView) itemView.findViewById(R.id.catImage);
+            this.cardView = (CardView) itemView.findViewById(R.id.card_view);
+        }
     }
 }
