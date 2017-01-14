@@ -30,6 +30,8 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
         kittens.add(new KittenModel());
         kittens.add(new KittenModel());
         kittens.add(new KittenModel());
+
+        this.setHasStableIds(true);
     }
 
     @Override
@@ -52,6 +54,11 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
         } else {
             this.reset(holder.itemView);
         }
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return kittens.get(position).getId();
     }
 
     private void reset(View root) {
