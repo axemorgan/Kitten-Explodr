@@ -1,4 +1,4 @@
-package cardinalsolutions.com.kittenexplodr;
+package morgan.alex.kittenexplodr;
 
 @SuppressWarnings("WeakerAccess")
 public class KittenModel {

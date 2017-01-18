@@ -1,4 +1,4 @@
-package cardinalsolutions.com.kittenexplodr;
+package morgan.alex.kittenexplodr;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -17,6 +17,8 @@ import com.squareup.picasso.Target;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import cardinalsolutions.com.kittenexplodr.R;
 
 class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 

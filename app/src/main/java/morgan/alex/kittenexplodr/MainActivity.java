@@ -1,4 +1,4 @@
-package cardinalsolutions.com.kittenexplodr;
+package morgan.alex.kittenexplodr;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import cardinalsolutions.com.kittenexplodr.R;
 import tyrantgit.explosionfield.ExplosionField;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package cardinalsolutions.com.kittenexplodr;
+package morgan.alex.kittenexplodr;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import cardinalsolutions.com.kittenexplodr.BuildConfig;
+import cardinalsolutions.com.kittenexplodr.R;
 
 public class AboutFragment extends DialogFragment {
 
