@@ -56,6 +56,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         recycler.setAdapter(adapter);
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                if (adapter.getItemCount() <= layoutManager.findLastVisibleItemPosition() + 2) {
+                    ArrayList<KittenModel> moreKittens = new ArrayList<>(4);
+                    moreKittens.add(new KittenModel());
+                    moreKittens.add(new KittenModel());
+                    moreKittens.add(new KittenModel());
+                    moreKittens.add(new KittenModel());
+                    adapter.addMoreKittens(moreKittens);
+                }
+            }
+        });
     }
 
     @Override
