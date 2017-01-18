@@ -126,7 +126,7 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
                     // TODO: it's recommended to generate Palettes on a background thread
                     int background = new Palette.Builder(bitmap).generate().getLightMutedColor(defaultBackground);
 
-                    cardView.setBackgroundColor(background);
+                    cardView.setCardBackgroundColor(background);
                 }
 
                 @Override
