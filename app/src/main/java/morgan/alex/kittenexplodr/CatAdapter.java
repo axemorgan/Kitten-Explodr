@@ -81,6 +81,8 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
             root.setScaleX(1);
             root.setScaleY(1);
             root.setAlpha(1);
+            root.setTranslationX(0.0f);
+            root.setTranslationY(0.0f);
         }
     }
 
