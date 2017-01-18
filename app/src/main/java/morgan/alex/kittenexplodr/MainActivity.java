@@ -12,7 +12,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import cardinalsolutions.com.kittenexplodr.R;
 import tyrantgit.explosionfield.ExplosionField;
 
 public class MainActivity extends AppCompatActivity {

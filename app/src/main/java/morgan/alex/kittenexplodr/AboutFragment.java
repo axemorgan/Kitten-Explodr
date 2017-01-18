@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import cardinalsolutions.com.kittenexplodr.BuildConfig;
-import cardinalsolutions.com.kittenexplodr.R;
 
 public class AboutFragment extends DialogFragment {
 
@@ -28,11 +26,6 @@ public class AboutFragment extends DialogFragment {
         title.setText(titleText);
 
         String messageText = this.getString(R.string.about_message);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            message.setText(Html.fromHtml(messageText, Html.FROM_HTML_MODE_LEGACY));
-//        } else {
-//            message.setText(Html.fromHtml(messageText));
-//        }
         message.setText(messageText);
 
         return view;
