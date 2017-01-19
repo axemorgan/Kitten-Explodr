@@ -46,6 +46,7 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
         Picasso.with(holder.itemView.getContext())
                 .load(kitten.getIamgeUrl())
+                .placeholder(R.drawable.emoji_cat)
                 .into(holder.target);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
