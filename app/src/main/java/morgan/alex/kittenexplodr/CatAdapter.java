@@ -53,8 +53,11 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
                 view.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        kittens.remove(holder.getAdapterPosition());
-                        notifyItemRemoved(holder.getAdapterPosition());
+                        int adapterPosition = holder.getAdapterPosition();
+                        if (adapterPosition != RecyclerView.NO_POSITION) {
+                            kittens.remove(adapterPosition);
+                            notifyItemRemoved(adapterPosition);
+                        }
                     }
                 }, 0x75);
                 onClickListener.onClick(view);
