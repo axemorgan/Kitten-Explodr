@@ -3,6 +3,7 @@ package morgan.alex.kittenexplodr;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -128,7 +129,7 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     imageView.setImageBitmap(bitmap);
 
-                    int defaultBackground = itemView.getContext().getResources().getColor(android.R.color.white);
+                    int defaultBackground = ContextCompat.getColor(itemView.getContext(), android.R.color.white);
                     // TODO: it's recommended to generate Palettes on a background thread
                     int background = new Palette.Builder(bitmap).generate().getLightMutedColor(defaultBackground);
 
